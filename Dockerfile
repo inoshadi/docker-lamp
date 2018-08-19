@@ -27,6 +27,9 @@ VOLUME /var/lib/mysql
     
 EXPOSE 3306
 
+# override virtual host config to enable htaccess
+ADD conf/000-default.conf /etc/apache2/sites-enable/000-default.conf
+
 # Enable mod_rewrite
 RUN a2enmod rewrite
 
