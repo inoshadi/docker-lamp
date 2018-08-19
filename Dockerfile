@@ -27,3 +27,9 @@ VOLUME /var/lib/mysql
     
 EXPOSE 3306
 
+# Enable mod_rewrite
+RUN a2enmod rewrite
+
+# Restart Apache
+RUN service apache2 restart
+
