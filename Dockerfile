@@ -8,10 +8,15 @@ ADD docker-mariadb/10.0/bin/mysql_user_postinit.sh  /usr/local/bin/
 ADD docker-mariadb/10.0/bin/mysql_user_preinit.sh /usr/local/bin/
 ADD docker-mariadb/10.0/bin/init.sh /usr/local/bin/
 ADD docker-mariadb/10.0/supervisor/mariadb.conf /etc/supervisor/conf.d/
+
+# Override default mirror to http://buaya.klas.or.id/ubuntu/
+# comment out this line if you want to use default mirror
 ADD trusty/sources.list /etc/apt/sources.list
 
+# Create required directories
 RUN mkdir /docker-entrypoint-initdb.d
 
+# Update repositories & install packages
 RUN apt-get update && \
     apt-get install software-properties-common && \
     apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db && \
@@ -27,7 +32,12 @@ VOLUME /var/lib/mysql
     
 EXPOSE 3306
 
+
+# Add webutils & default index.php
+ADD www-html /var/www/html
+
 # override virtual host config to enable htaccess
+ADD conf/apache2.conf /etc/apache2/apache2.conf
 ADD conf/000-default.conf /etc/apache2/sites-enable/000-default.conf
 
 # Enable mod_rewrite
