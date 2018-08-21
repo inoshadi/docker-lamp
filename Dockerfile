@@ -38,7 +38,7 @@ ADD www-html /var/www/html
 
 # override virtual host config to enable htaccess
 ADD conf/apache2.conf /etc/apache2/apache2.conf
-ADD conf/000-default.conf /etc/apache2/sites-enable/000-default.conf
+ADD conf/000-default.conf /etc/apache2/sites-enabled/000-default.conf
 
 # Enable mod_rewrite
 RUN a2enmod rewrite
