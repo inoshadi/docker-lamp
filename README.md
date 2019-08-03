@@ -65,4 +65,5 @@ with a little modification
     </VirtualHost>
 
     ```
-- `trusty/source.list` # Override default mirror to http://buaya.klas.or.id/ubuntu/
+- ~~`trusty/source.list` # Override default mirror to http://buaya.klas.or.id/ubuntu/~~
+- `trusty/source.list` # Override default mirror to http://kambing.ui.ac.id/ubuntu/
